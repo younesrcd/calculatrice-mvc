@@ -1,3 +1,45 @@
+# RPN Calculator – Java / JavaFX (MVC)
+
+A desktop calculator using **Reverse Polish Notation** (RPN), written in Java with a JavaFX interface and a strict **Model-View-Controller** architecture.
+It was a 2nd-year software engineering project at IMT Mines Alès (France), built in a team of two in autumn 2026.
+
+## Features
+- Basic operations in RPN: `+ − × ÷` and sign change
+- Operand stack implemented by us (no library stack), with **push**, **drop** and **clear**
+- Previous results can be reused from the stack
+- Two interchangeable views behind the same interface: a JavaFX GUI (`CalculatorGUI`) and a console view (`ConsoleView`) used for testing
+
+## My part
+I wrote the **calculation engine** (`model/CalculatorModel`) and the **controller** (`controler/CalculatorControler`) that connects it to the view.
+
+## Architecture
+```
+src/
+├── model/      CalculatorModel, CalculatorModelInterface     – stack and operations
+├── controler/  CalculatorControler, CalculatorControlerInterface – user actions → model
+├── view/       CalculatorGUI (JavaFX), ConsoleView, CalculatorGUIInterface
+└── main/       CalculatorApp (GUI launcher), Main (console test of the model)
+```
+The view only knows the controller through its interface. Class names follow the spelling in the course's UML diagram (`controler`, `substract`).
+
+## Run
+Requires the JavaFX 21 SDK. VM options:
+```
+--module-path "<path>/javafx-sdk-21.0.13/lib" --add-modules javafx.controls
+```
+- `main.CalculatorApp` starts the graphical calculator
+- `main.Main` runs the console checks of the model
+
+## Known limitations
+- Division by zero returns `Infinity`, with no error message
+- An operation is ignored when the stack holds too few operands
+- No automated unit tests yet: the model is checked manually through `Main` and the console view
+
+---
+
+*Version française : voir plus bas (« Écarts par rapport à la consigne »).*
+
+
 # Calculatrice RPN (MVC, Java / JavaFX)
 
 ## Écarts par rapport à la consigne
